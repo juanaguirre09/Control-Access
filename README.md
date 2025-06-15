@@ -44,9 +44,6 @@ This project implements a multi-factor access control system using an ESP32 micr
 - `/enroll_lib.py`         – Fingerprint enrollment logic with feedback and OLED support
 - `/api_queue.py`          – Handles access event logging, with retry queue for offline buffering
 
-/urequests.py         # Lightweight HTTP client for MicroPython (GET, POST, etc.)
-/enroll_lib.py        # Fingerprint enrollment logic using AS608 sensor with feedback and OLED support
-/api_queue.py         # Handles logging access events to the server, including retry mechanism for offline buffering
 
 
 
