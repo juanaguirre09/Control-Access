@@ -26,10 +26,23 @@ This project implements a multi-factor access control system using an ESP32 micr
 | RC522 RFID Module    | Reads MIFARE cards and tags         |
 | 4x4 Keypad           | PIN code entry                      |
 | OLED Display (I2C)   | User interface                      |
-| Relay Module         | Controls electric lock or actuator  |
 | Breadboard & Wires   | For connections                     |
 
 ---
 
-## ⚙️ System Architecture
+## ⚙️ File Structure
+
+/main.py               # Main execution file
+/oled.py               # OLED display handling
+/ssd1306.py            # OLED display driver library (I2C)
+/keypad_utp.py         # Matrix keypad handler
+/enroll_rfid.py        # Script to enroll new RFID cards or key fobs
+/mfrc522.py            # RFID reader driver library (RC522)
+/enroll_fingerprint.py # Script to enroll new fingerprints
+/fingerprint.py        # Fingerprint sensor driver library (AS608)
+/urequests.py         # Lightweight HTTP client for MicroPython (GET, POST, etc.)
+/enroll_lib.py        # Fingerprint enrollment logic using AS608 sensor with feedback and OLED support
+/api_queue.py         # Handles logging access events to the server, including retry mechanism for offline buffering
+
+
 
