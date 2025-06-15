@@ -73,25 +73,6 @@ if not sensor.verify_password():
     print("Error: sensor fingerprint no detectado.")
     raise SystemExit
 
-# # --- Base de datos de usuarios ---
-# usuarios = {
-#     "1234": {"nombre": "Juan", "uid": "8B0B812223"},
-#     "4321": {"nombre": "Ana",  "uid": "E912C96D5F"},
-#     "5678": {"nombre": "Claudia", "uid": "26DB3B02C4"},
-#     "9876": {"nombre": "Alejo", "uid": "0386412DE9"},
-# }
-# 
-# 
-# fingerprint_map = {
-#     1: "1234",   # Slot 1  → Juan
-#     2: "4321",   # Slot 2  → Ana
-#     3: "5678",   # Slot 3 - Claudia
-#     4: "9876",
-# }
-# 
-# # Mapeo de UID RFID a clave
-# uids = {v["uid"]: k for k, v in usuarios.items()}
-
 clave_ingresada = ""
 intentos_fallidos = 0
 bloqueado = False
@@ -130,20 +111,6 @@ def acceso_correcto(nombre: str, uid: str, via: str):
     modo_reposo()
     mostrar_oled("Ingrese clave:")
 
-# def buscar_usuario_por_pin(pin):
-#     url = "http://192.168.0.5/access/buscar_usuario.php?pin={}".format(pin)
-#     try:
-#         response = urequests.get(url)
-#         data = response.json()
-#         response.close()
-#         if data.get("ok"):
-#             # Usuario encontrado, retorna nombre, rfid_uid y slot_huella
-#             return data["nombre"], data["rfid_uid"], data["slot_huella"]
-#         else:
-#             return None, None, None
-#     except Exception as e:
-#         print("Error consultando usuario:", e)
-#         return None, None, None
 
 def buscar_usuario_por_pin(pin_str):
     """
@@ -218,22 +185,6 @@ mostrar_oled("Ingrese clave o", "use su tarjeta o huella")
 
 
 
-# def buscar_huella():
-#     if sensor.get_image() != 0:          # 0 = FINGERPRINT_OK
-#         return None
-#     if sensor.image2Tz(1) != 0:          # copia a charBuffer1
-#         return None
-#     # Busca en toda la librería (0–199). Ajusta page_num si tu base crece.
-#     if sensor.search(0, 200) != 0:       # 0 = FINGERPRINT_OK
-#         return None
-# 
-#     fid = sensor.finger_id               # lo llenó search()
-#     print("DEBUG: finger_id =", fid)
-# 
-#     clave = fingerprint_map.get(fid)
-#     if clave and clave in usuarios:
-#         return usuarios[clave]["nombre"]
-#     return None
 
 def buscar_huella():
     # 0 = FINGERPRINT_OK
@@ -287,17 +238,7 @@ try:
             
         
 
-        # --- LECTURA HUELLA DACTILAR ---	
-#         match = buscar_huella()
-#         if match:       # match es el nombre del usuario
-#             # Obtén el slot que identificó el sensor
-#             fid = sensor.finger_id          # ya se imprime en DEBUG
-#             acceso_correcto(match, str(fid), "huella")
-#             intentos_fallidos = 0
-#             continue
-#         elif match is None and sensor.get_image() == 0:
-#             # hubo imagen pero no coincidencia
-#             mostrar_oled("Huella no", "reconocida")
+
 
         match = buscar_huella()
         if match:                              # recibió (nombre, rfid_uid, slot)
