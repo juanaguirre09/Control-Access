@@ -30,16 +30,20 @@ This project implements a multi-factor access control system using an ESP32 micr
 
 ---
 
-## ⚙️ File Structure
+## 📁 File Structure
 
-/main.py               # Main execution file
-/oled.py               # OLED display handling
-/ssd1306.py            # OLED display driver library (I2C)
-/keypad_utp.py         # Matrix keypad handler
-/enroll_rfid.py        # Script to enroll new RFID cards or key fobs
-/mfrc522.py            # RFID reader driver library (RC522)
-/enroll_fingerprint.py # Script to enroll new fingerprints
-/fingerprint.py        # Fingerprint sensor driver library (AS608)
+- `/main.py`               – Main execution file for the access control system
+- `/oled.py`               – Helper functions for OLED display messages
+- `/ssd1306.py`            – OLED display driver library (I2C protocol)
+- `/keypad_utp.py`         – Matrix keypad handler for PIN entry
+- `/enroll_rfid.py`        – Script to enroll new RFID cards or key fobs
+- `/mfrc522.py`            – RFID reader driver library (MFRC522 module)
+- `/enroll_fingerprint.py` – Script to enroll new fingerprints using the AS608 sensor
+- `/fingerprint.py`        – Fingerprint sensor driver library (AS608)
+- `/urequests.py`          – Lightweight HTTP client for MicroPython (GET, POST, etc.)
+- `/enroll_lib.py`         – Fingerprint enrollment logic with feedback and OLED support
+- `/api_queue.py`          – Handles access event logging, with retry queue for offline buffering
+
 /urequests.py         # Lightweight HTTP client for MicroPython (GET, POST, etc.)
 /enroll_lib.py        # Fingerprint enrollment logic using AS608 sensor with feedback and OLED support
 /api_queue.py         # Handles logging access events to the server, including retry mechanism for offline buffering
