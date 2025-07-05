@@ -46,11 +46,11 @@ This project implements a multi-factor access control system using an ESP32 micr
 
 ## 🎥 Project Overview Video
 
-[![Watch the Project Video](https://youtu.be/PbTgEAiEI7A)
+[Watch the Project Video](https://youtu.be/PbTgEAiEI7A)
 
 ## 🗄️ Database Explanation Video
 
-[![Watch the Database Video](https://youtu.be/VDUhq6uBhqI)
+[Watch the Database Video](https://youtu.be/VDUhq6uBhqI)
 
 
 
