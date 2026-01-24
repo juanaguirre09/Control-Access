@@ -1,5 +1,21 @@
-# Control-Access
-Multi-factor access control system using ESP32 and MicroPython. Includes fingerprint (AS608), RFID (RC522), and keypad authentication, with OLED display and relay control. Logs access events and supports modular expansion.
+# Control-Access (ESP32 + MicroPython)
+
+Multi-factor access control system built with an **ESP32** and **MicroPython**.  
+The project combines **fingerprint (AS608)**, **RFID (RC522)**, and **PIN keypad (4×4)** authentication, and logs every access event in a **local database (XAMPP + MySQL/MariaDB)**.
+
+This repository documents the full workflow: **prototype assembly → sensor integration → database + PHP pages → access logging → final system demo videos**.
+
+> Goal: provide a secure and traceable access system where each entry is linked to a user, an authentication method, and a timestamp.
+
+---
+
+## What this system can do
+
+- Authenticate users using **fingerprint**, **RFID**, or **PIN**
+- Show system status on an **OLED display (I2C)**
+- Control a **relay** to simulate a door lock/unlock action
+- Register users and store access logs in a **local web database**
+- Keep the code **modular**, so it is easy to extend (new sensors, new rules, etc.)
 
 # Access Control System – ESP32 + MicroPython
 
