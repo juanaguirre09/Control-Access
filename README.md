@@ -70,22 +70,35 @@ Each record contains:
 
 This ensures full traceability of system usage and allows monitoring through a web interface.
 
+## Authentication Flow (Internal Logic)
 
-# Access Control System – ESP32 + MicroPython
+This section summarizes how the system processes an access attempt from start to finish.
 
-This project implements a multi-factor access control system using an ESP32 microcontroller programmed with MicroPython. It combines **fingerprint recognition**, **RFID scanning**, and **keypad-based PIN entry** to manage secure access control.
+1. **User input**  
+   The user interacts with the system using one of the available methods:
+   - PIN code via keypad  
+   - Fingerprint via biometric sensor  
+   - RFID card via reader  
 
-## Features
+2. **Data acquisition**  
+   The ESP32 detects the active authentication method and captures the corresponding data
+   (PIN value, fingerprint ID, or RFID UID).
 
-- Fingerprint authentication (AS608 sensor)
-- RFID card reading (RC522 module)
-- PIN code input via 4x4 matrix keypad
-- OLED display for real-time user guidance
-- Relay module to simulate door lock/unlock
-- Access event logging with authentication method and timestamp
-- Modular and readable MicroPython code
+3. **Verification**  
+   The captured data is sent to a local server through an HTTP request.  
+   The server checks the database to verify whether the credentials match a registered user.
 
----
+4. **Decision and response**  
+   - If the credentials are valid, access is granted.  
+   - If no match is found, access is denied.  
+
+   The ESP32 then activates the relay, updates the LEDs, and shows the result on the OLED display.
+
+5. **Event logging**  
+   Each attempt is stored in the database with the user identifier, authentication method,
+   and timestamp, ensuring full traceability of system activity.
+
+
 
 ## Components Used
 
@@ -116,12 +129,21 @@ This project implements a multi-factor access control system using an ESP32 micr
 
 ## Project Overview Video
 
-[Watch the Project Video](https://youtu.be/PbTgEAiEI7A)
+This video presents a complete demonstration of the access control system in operation.  
+It shows the physical prototype, the different authentication methods (fingerprint, RFID, and PIN),
+and how the system responds in real time to each access attempt.
+
+▶️ [Watch the Project Video](https://youtu.be/PbTgEAiEI7A)
+
+---
 
 ## Database Explanation Video
 
-[Watch the Database Video](https://youtu.be/VDUhq6uBhqI)
+This video explains how the local database is structured and how access events are stored.
+It includes the user registration interface, the access log table, and the communication
+between the ESP32 and the server using XAMPP.
 
+▶️ [Watch the Database Video](https://youtu.be/VDUhq6uBhqI)
 
 
 
